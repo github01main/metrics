@@ -95,7 +95,7 @@ async function retry(func, {retries = 1, delay = 0} = {}) {
     info("Version", conf.package.version)
 
     //Core inputs
-    Object.assign(preset, await presets(core.getInput("config_presets"), {log:false, core}))
+    Object.assign(preset, await presets(core.getInput("config_presets"), {log:true, core}))
     const {
       user:_user,
       repo:_repo,
@@ -127,6 +127,7 @@ async function retry(func, {retries = 1, delay = 0} = {}) {
       ...config
     } = metadata.plugins.core.inputs.action({core, preset})
     const q = {...query, ...(_repo ? {repo:_repo} : null), template}
+    console.log(preset, q)
     const _output = ["svg", "jpeg", "png", "json", "markdown", "markdown-pdf", "insights"].includes(config["config.output"]) ? config["config.output"] : metadata.templates[template].formats[0] ?? null
     const filename = _filename.replace(/[*]/g, {jpeg:"jpg", markdown:"md", "markdown-pdf":"pdf", insights:"html"}[_output] ?? _output)
 
