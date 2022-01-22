@@ -245,7 +245,7 @@ metadata.plugin = async function({__plugins, __templates, name, logger}) {
             continue
           }
           //From user
-          const value = `${core.getInput(key)}`.trim()
+          const value = `${core.getInput(key)}`.trim() || metadata.inputs[key]?.default ?? ""
           try {
             q[key] = decodeURIComponent(value)
           }
