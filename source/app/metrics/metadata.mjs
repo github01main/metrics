@@ -239,9 +239,9 @@ metadata.plugin = async function({__plugins, __templates, name, logger}) {
         const q = {}
         for (const key of Object.keys(inputs)) {
           //From presets
-          if ((key in presets)&&(process.env[`INPUT_${key.replace(/ /g, "_").toUpperCase()}`] === undefined)) {
+          if ((key in preset)&&(process.env[`INPUT_${key.replace(/ /g, "_").toUpperCase()}`] === undefined)) {
             logger(`metrics/inputs > ${key} has been set by a preset and is not overriden`)
-            q[key] = presets[key]
+            q[key] = preset[key]
             continue
           }
           //From user
