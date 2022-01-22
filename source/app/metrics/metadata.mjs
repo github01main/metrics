@@ -238,7 +238,7 @@ metadata.plugin = async function({__plugins, __templates, name, logger}) {
         //Build query object from inputs
         const q = {}
         for (const key of Object.keys(inputs)) {
-          const unspecified = process.env[`INPUT_${key.replace(/ /g, "_").toUpperCase()}`] === undefined
+          const unspecified = process.env[`INPUT_${key.replace(/ /g, "_").toUpperCase()}`] === ""
           const x = process.env[`INPUT_${key.replace(/ /g, "_").toUpperCase()}`]
           console.log(">>>>>>>", key, `INPUT_${key.replace(/ /g, "_").toUpperCase()}` in process.env, x, `[${x}]`, typeof x, unspecified)
           let value
